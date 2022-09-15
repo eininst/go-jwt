@@ -16,21 +16,21 @@ go get -u github.com/eininst/go-jwt
 package main
 
 import (
-	"fmt"
-	"github.com/eininst/go-jwt"
-	"time"
+    "fmt"
+    "github.com/eininst/go-jwt"
+    "time"
 )
 
 func main() {
-	j := jwt.New("m9561kcc59534db1203e6572f7d5dq1x")
+    j := jwt.New("m9561kcc59534db1203e6572f7d5dq1x")
 
-	data := map[string]interface{}{
-		"id":   123,
-		"name": "wzq",
-	}
+    data := map[string]interface{}{
+        "id":   123,
+        "name": "wzq",
+    }
 
-	token := j.CreateToken(data, time.Second*10)
-	fmt.Println("Create a token:", token)
+    token := j.CreateToken(data, time.Second*10)
+    fmt.Println("Create a token:", token)
 }
 
 ```
