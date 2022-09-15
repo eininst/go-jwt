@@ -39,16 +39,16 @@ func main() {
 
 ```go
 func main() {
-var ps map[string]interface{}
-
-er := j.ParseToken(token, &ps)
-
-if errors.Is(er, jwt.Expired) {
-fmt.Println("my is expired")
-return
-}
-
-fmt.Println("Parse a token:", ps)
+    var ps map[string]interface{}
+    
+    er := j.ParseToken(token, &ps)
+    
+    if errors.Is(er, jwt.Expired) {
+        fmt.Println("my is expired")
+        return
+    }
+    
+    fmt.Println("Parse a token:", ps)
 }
 ```
 
