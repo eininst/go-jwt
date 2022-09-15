@@ -28,7 +28,7 @@ func main() {
     }
 
     token := j.CreateToken(data, time.Second*10)
-    fmt.Println("token:", token)
+    fmt.Println("Create a token:", token)
 }
 
 ```
@@ -43,8 +43,8 @@ func main() {
         fmt.Println("my is expired")
         return
     }
-    
-    fmt.Println("data:", ps)
+
+    fmt.Println("Parse a token:", ps)
 }
 ```
 
