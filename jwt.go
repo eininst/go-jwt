@@ -3,7 +3,9 @@ package jwt
 import (
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"sync"
 	"time"
 )
 
@@ -23,6 +25,29 @@ type JwtError string
 func (e JwtError) Error() string { return string(e) }
 
 func (JwtError) RedisError() {}
+
+var defaultJwt *Jwt
+var once sync.Once
+
+func SetDefault(secretKey string) {
+	once.Do(func() {
+		defaultJwt = New(secretKey)
+	})
+}
+
+func CreateToken(data interface{}, expire time.Duration) string {
+	if defaultJwt == nil {
+		panic(errors.New("DefaultJwt is nil"))
+	}
+	return defaultJwt.CreateToken(data, expire)
+}
+
+func ParseToken(token string, v interface{}) error {
+	if defaultJwt == nil {
+		panic(errors.New("DefaultJwt is nil"))
+	}
+	return defaultJwt.ParseToken(token, v)
+}
 
 func New(secretKey string) *Jwt {
 	l := len(secretKey)
